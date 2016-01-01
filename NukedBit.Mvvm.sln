@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NukedBit.Mvvm", "NukedBit.Mvvm\NukedBit.Mvvm.csproj", "{0AF27CCF-BB10-4E13-B4F2-8F1236C2D4E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NukedBit.Mvvm.DI.AutoFac", "NukedBit.Mvvm.DI.AutoFac\NukedBit.Mvvm.DI.AutoFac.csproj", "{60ABC5C9-0EBE-46F0-AC5C-6C0779C279FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AF27CCF-BB10-4E13-B4F2-8F1236C2D4E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF27CCF-BB10-4E13-B4F2-8F1236C2D4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF27CCF-BB10-4E13-B4F2-8F1236C2D4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF27CCF-BB10-4E13-B4F2-8F1236C2D4E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60ABC5C9-0EBE-46F0-AC5C-6C0779C279FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60ABC5C9-0EBE-46F0-AC5C-6C0779C279FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60ABC5C9-0EBE-46F0-AC5C-6C0779C279FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60ABC5C9-0EBE-46F0-AC5C-6C0779C279FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
