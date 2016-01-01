@@ -22,7 +22,7 @@
 	</metadata>
 	<files>		
 		<!-- pcl -->
-		<file src=".\releases\NukedBit.Mvvm\bin\Release\NukedBit.Mvvm.*" target="lib\portable45-net45+win8+wp8+wpa81" />		
+		<file src="..\releases\NukedBit.Mvvm\bin\Release\NukedBit.Mvvm.*" target="lib\portable45-net45+win8+wp8+wpa81" />		
 	</files>
 </package>
 
