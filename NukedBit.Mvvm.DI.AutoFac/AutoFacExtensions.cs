@@ -6,10 +6,9 @@ namespace NukedBit.Mvvm.DI.AutoFac
     public static class AutoFacExtensions
     {
         public static IRegistrationBuilder<TLimit, TActivatorData, TRegistrationStyle> AsView<TLimit, TActivatorData, TRegistrationStyle>(this IRegistrationBuilder<TLimit, TActivatorData, TRegistrationStyle> dep)
-            where TLimit: IView
+            where TLimit: class
         {
-            return dep.Named<IView>(typeof (TLimit).Name)
-                .As<IView>();
+            return dep.Named<IView>(typeof (TLimit).Name);
         }
     }
 }
