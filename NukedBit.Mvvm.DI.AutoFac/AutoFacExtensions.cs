@@ -8,7 +8,7 @@ namespace NukedBit.Mvvm.DI.AutoFac
         public static IRegistrationBuilder<TLimit, TActivatorData, TRegistrationStyle> AsView<TLimit, TActivatorData, TRegistrationStyle>(this IRegistrationBuilder<TLimit, TActivatorData, TRegistrationStyle> dep)
             where TLimit: class
         {
-            return dep.Named<IView>(typeof (TLimit).Name);
+            return dep.Named<TLimit>(typeof (TLimit).Name);
         }
     }
 }
