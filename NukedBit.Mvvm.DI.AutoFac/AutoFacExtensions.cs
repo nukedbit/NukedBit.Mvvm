@@ -1,15 +1,15 @@
 ﻿using Autofac.Builder;
-using NukedBit.Mvvm.ViewModels;
+using NukedBit.Mvvm.Views;
 
 namespace NukedBit.Mvvm.DI.AutoFac
 {
     public static class AutoFacExtensions
     {
         public static IRegistrationBuilder<TLimit, TActivatorData, TRegistrationStyle> AsView<TLimit, TActivatorData, TRegistrationStyle>(this IRegistrationBuilder<TLimit, TActivatorData, TRegistrationStyle> dep)
-            where TLimit: IViewModel
+            where TLimit: IView
         {
-            return dep.Named<IViewModel>(typeof (TLimit).Name)
-                .As<IViewModel>();
+            return dep.Named<IView>(typeof (TLimit).Name)
+                .As<IView>();
         }
     }
 }

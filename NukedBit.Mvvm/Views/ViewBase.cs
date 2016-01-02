@@ -21,7 +21,7 @@ using Xamarin.Forms;
 
 namespace NukedBit.Mvvm.Views
 {
-    public class ViewBase<T> : ContentPage where T : IViewModel
+    public class ViewBase<T> : ContentPage where T : IViewModel, IView
     {
         private readonly T _viewModel;
 
