@@ -16,16 +16,19 @@
 
 *****************************************************************************/
 
+using System;
 using NukedBit.Mvvm.ViewModels;
 using Xamarin.Forms;
 
 namespace NukedBit.Mvvm.Views
 {
-    public class ViewBase<T> : ContentPage where T : IViewModel, IView
+    public class ViewBase<T> : ContentPage, IView where T : IViewModel
     {
         private readonly T _viewModel;
 
         public T ViewModel => _viewModel;
+
+        IViewModel IView.ViewModel => _viewModel;
 
         protected ViewBase(T viewmodel)
         {
