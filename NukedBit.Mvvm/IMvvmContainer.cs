@@ -18,6 +18,7 @@
 
 using System;
 using NukedBit.Mvvm.ViewModels;
+using Xamarin.Forms;
 
 namespace NukedBit.Mvvm
 {
@@ -26,5 +27,6 @@ namespace NukedBit.Mvvm
         T Resolve<T>() where T : IViewModel;
         T Resolve<T>(params IParameter[] args) where T : IViewModel;
         object Resolve(Type viewType, params IParameter[] args);
+        object ResolveNamed(string viewName);
     }
 }

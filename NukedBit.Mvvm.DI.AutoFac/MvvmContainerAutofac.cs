@@ -48,6 +48,11 @@ namespace NukedBit.Mvvm.DI.AutoFac
             return _context.Resolve(viewType, parameters);
         }
 
+        public object ResolveNamed(string viewName)
+        {
+            return _context.ResolveNamed<IViewModel>(viewName);
+        }
+
         public static IMvvmContainer Create(IComponentContext context)
         {
             return new MvvmContainerAutofac(context);

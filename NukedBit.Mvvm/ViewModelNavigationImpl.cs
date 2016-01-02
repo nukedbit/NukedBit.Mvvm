@@ -22,14 +22,16 @@ using NukedBit.Mvvm.ViewModels;
 using Xamarin.Forms;
 
 namespace NukedBit.Mvvm
-{
-    public class ViewModelNavigationImpl : IViewModelNavigator
+{    
+    internal class ViewModelNavigationImpl : IViewModelNavigator
     {
         private readonly IMvvmContainer _container;
+        private readonly bool _searchByName;
 
-        public ViewModelNavigationImpl(IMvvmContainer container)
+        public ViewModelNavigationImpl(IMvvmContainer container, bool searchByName)
         {
             _container = container;
+            _searchByName = searchByName;
         }
 
         #region IViewModelNavigator implementation
@@ -52,9 +54,13 @@ namespace NukedBit.Mvvm
             var assemblyQualifiedName = model.GetType().AssemblyQualifiedName;
             var viewModelName = model.GetType().Name;
             var viewName = ExtractViewName(viewModelName);
-            var viewType = GetViewType(assemblyQualifiedName, viewModelName, viewName);
-            return (ContentPage)_container.Resolve(viewType,
-                new TypedParameter(model.GetType(), model));
+            if (!_searchByName)
+            {
+                var viewType = GetViewType(assemblyQualifiedName, viewModelName, viewName);
+                return (ContentPage) _container.Resolve(viewType,
+                    new TypedParameter(model.GetType(), model));
+            }
+            return (ContentPage) _container.ResolveNamed(viewName);
         }
 
         private static Type GetViewType(string assemblyQualifiedName, string viewModelName, string viewName)
