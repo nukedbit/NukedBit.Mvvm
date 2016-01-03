@@ -4,6 +4,7 @@ using System.Linq;
 using Autofac;
 using Autofac.Core;
 using NukedBit.Mvvm.ViewModels;
+using Xamarin.Forms;
 
 namespace NukedBit.Mvvm.DI.AutoFac
 {
@@ -50,7 +51,7 @@ namespace NukedBit.Mvvm.DI.AutoFac
 
         public object ResolveNamed(string viewName)
         {
-            return _context.ResolveNamed<IViewModel>(viewName);
+            return _context.ResolveNamed<ContentPage>(viewName);
         }
 
         public static IMvvmContainer Create(IComponentContext context)
