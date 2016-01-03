@@ -49,9 +49,10 @@ namespace NukedBit.Mvvm.DI.AutoFac
             return _context.Resolve(viewType, parameters);
         }
 
-        public object ResolveNamed(string viewName)
+        public object ResolveNamed(string viewName, params IParameter[] args)
         {
-            return _context.ResolveNamed<ContentPage>(viewName);
+            var parameters = GetAutofacParameters(args);
+            return _context.ResolveNamed<ContentPage>(viewName, parameters);
         }
 
         public static IMvvmContainer Create(IComponentContext context)

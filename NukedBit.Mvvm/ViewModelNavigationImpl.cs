@@ -60,7 +60,7 @@ namespace NukedBit.Mvvm
                 return (ContentPage) _container.Resolve(viewType,
                     new TypedParameter(model.GetType(), model));
             }
-            return (ContentPage) _container.ResolveNamed(viewName);
+            return (ContentPage) _container.ResolveNamed(viewName, new TypedParameter(model.GetType(), model));
         }
 
         private static Type GetViewType(string assemblyQualifiedName, string viewModelName, string viewName)

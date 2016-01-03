@@ -27,6 +27,6 @@ namespace NukedBit.Mvvm
         T Resolve<T>() where T : IViewModel;
         T Resolve<T>(params IParameter[] args) where T : IViewModel;
         object Resolve(Type viewType, params IParameter[] args);
-        object ResolveNamed(string viewName);
+        object ResolveNamed(string viewName, params IParameter[] args);
     }
 }
