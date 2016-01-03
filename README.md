@@ -20,6 +20,9 @@ Very basic stuff IViewModelNavigator also as only what i needed at the moment,
 i hope to add in future more features, but you are welcome to make pull requests :)
 
 
+Examples can be fount at [https://github.com/nukedbit/nukedbit-mvvm-examples](https://github.com/nukedbit/nukedbit-mvvm-examples)
+
+
 
 
 	Install-Package NukedBit.Mvvm
