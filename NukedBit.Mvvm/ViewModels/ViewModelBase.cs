@@ -19,6 +19,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System;
+using Xamarin.Forms;
 
 namespace NukedBit.Mvvm.ViewModels {
 
@@ -38,5 +39,7 @@ namespace NukedBit.Mvvm.ViewModels {
 		protected void OnNotifyPropertyChanged([CallerMemberName]string name = null) {
 			PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (name));
 		}
-	}
+
+        public INavigation Navigation { get; internal set; }
+    }
 }

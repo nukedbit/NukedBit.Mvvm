@@ -33,7 +33,15 @@ namespace NukedBit.Mvvm.Views
         protected ViewBase(T viewmodel)
         {
             _viewModel = viewmodel;
-            BindingContext = _viewModel;
+            BindingContext = _viewModel;   
+        }
+
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            if (!(ViewModel is ViewModelBase)) return;
+            var modelBase = ViewModel as ViewModelBase;
+            modelBase.Navigation = Navigation;
         }
     }
 }
