@@ -15,7 +15,7 @@
 		<tags>mvvm xamarin android ios forms monodroid monotouch xamarin.android xamarin.ios xamarin.forms windows8 winrt net net45 netcore windowsphone windowsstore uwp</tags>
 		<iconUrl>http://i.imgur.com/UHTvohwl.jpg</iconUrl> 
 		<dependencies>
-			<group targetFramework ="portable45-net45+win8+wp8+wpa81">
+			<group targetFramework ="portable45-net45+win8+wp8">
 				<dependency id="Xamarin.Forms" version="2.0.0.6490" />
 				<dependency id="NukedBit.Mvvm" version="$version$" />
 			</group>
@@ -23,7 +23,7 @@
 	</metadata>
 	<files>		
 		<!-- pcl -->
-		<file src="..\releases\NukedBit.Mvvm.DI.AutoFac\bin\Release\NukedBit.Mvvm.DI.Autofac.*" target="lib\portable45-net45+win8+wp8+wpa81" />		
+		<file src="..\releases\NukedBit.Mvvm.DI.AutoFac\bin\Release\NukedBit.Mvvm.DI.Autofac.*" target="lib\portable45-net45+win8+wp8" />		
 	</files>
 </package>
 
