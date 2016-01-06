@@ -18,7 +18,6 @@
 
 using System;
 using NukedBit.Mvvm.ViewModels;
-using Xamarin.Forms;
 
 namespace NukedBit.Mvvm
 {
