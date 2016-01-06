@@ -24,7 +24,7 @@ namespace NukedBit.Mvvm.Facts
                 .Returns(fakeViewModel);
             var navigationMock = new Mock<INavigation>();
 
-            var impl = new ViewModelNavigationImpl(containerMock.Object, true);
+            var impl = new ViewModelNavigationImpl(containerMock.Object);
             navigationMock.Setup(m => m.PushAsync(view)).Returns(Task.FromResult(0));
 
             await impl.Navigate<FakeViewModel>(navigationMock.Object);
@@ -45,7 +45,7 @@ namespace NukedBit.Mvvm.Facts
 
             var navigationMock = new Mock<INavigation>();
 
-            var impl = new ViewModelNavigationImpl(containerMock.Object, true);
+            var impl = new ViewModelNavigationImpl(containerMock.Object);
             navigationMock.Setup(m => m.PushAsync(view)).Returns(Task.FromResult(0));
             await ThrowsAsync<NullReferenceException>(() =>
                 impl.Navigate<FakeViewModel>(navigationMock.Object));
@@ -69,7 +69,7 @@ namespace NukedBit.Mvvm.Facts
                 .Returns(fakeViewModel);
             var navigationMock = new Mock<INavigation>();
 
-            var impl = new ViewModelNavigationImpl(containerMock.Object, true);
+            var impl = new ViewModelNavigationImpl(containerMock.Object);
             navigationMock.Setup(m => m.PushAsync(view)).Returns(Task.FromResult(0));
 
             //---------------

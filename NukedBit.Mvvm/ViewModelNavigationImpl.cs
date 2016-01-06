@@ -26,12 +26,10 @@ namespace NukedBit.Mvvm
     internal class ViewModelNavigationImpl : IViewModelNavigator
     {
         private readonly IMvvmContainer _container;
-        private readonly bool _searchByName;
 
-        public ViewModelNavigationImpl(IMvvmContainer container, bool searchByName)
+        public ViewModelNavigationImpl(IMvvmContainer container)
         {
             _container = container;
-            _searchByName = searchByName;
         }
 
         #region IViewModelNavigator implementation
@@ -51,24 +49,10 @@ namespace NukedBit.Mvvm
 
         private ContentPage ResolveView(IViewModel model)
         {
-            var assemblyQualifiedName = model.GetType().AssemblyQualifiedName;
             var viewModelName = model.GetType().Name;
             var viewName = ExtractViewName(viewModelName);
-            if (!_searchByName)
-            {
-                var viewType = GetViewType(assemblyQualifiedName, viewModelName, viewName);
-                return (ContentPage) _container.Resolve(viewType,
-                    new TypedParameter(model.GetType(), model));
-            }
-            return (ContentPage) _container.ResolveNamed(viewName, new TypedParameter(model.GetType(), model));
-        }
 
-        private static Type GetViewType(string assemblyQualifiedName, string viewModelName, string viewName)
-        {
-            var viewFullTypeName = assemblyQualifiedName.Replace(viewModelName, viewName);
-            viewFullTypeName = viewFullTypeName.Replace(".ViewModels.", ".Views.");
-            var viewType = Type.GetType(viewFullTypeName);
-            return viewType;
+            return (ContentPage) _container.ResolveNamed(viewName, new TypedParameter(model.GetType(), model));
         }
 
         private static string ExtractViewName(string viewModelName)

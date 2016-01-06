@@ -22,12 +22,7 @@ namespace NukedBit.Mvvm
     {
         public static IViewModelNavigator Create(IMvvmContainer container)
         {
-            return new ViewModelNavigationImpl(container, false);
-        }
-
-        public static IViewModelNavigator Create(IMvvmContainer container, bool searchByName)
-        {
-            return new ViewModelNavigationImpl(container, searchByName);
+            return new ViewModelNavigationImpl(container);
         }
     }
 }
