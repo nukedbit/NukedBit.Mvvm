@@ -28,21 +28,25 @@ namespace NukedBit.Mvvm.DI.AutoFac
 {
     public class MvvmContainerAutofac : IMvvmContainer
     {
-        private readonly IComponentContext _context;
-        internal MvvmContainerAutofac(IComponentContext context)
+        private readonly IContainer _context;
+        internal MvvmContainerAutofac(IContainer context)
         {
-            _context = context;
+            _context = context;            
         }
 
         public T Resolve<T>() where T : IViewModel
         {
-            return _context.Resolve<T>();
+            using (var scope = _context.BeginLifetimeScope())
+                return scope.Resolve<T>();
         }
 
         public T Resolve<T>(params IParameter[] args) where T : IViewModel
         {
-            var parameters = GetAutofacParameters(args);
-            return _context.Resolve<T>(parameters);
+            using (var scope = _context.BeginLifetimeScope())
+            {
+                var parameters = GetAutofacParameters(args);
+                return scope.Resolve<T>(parameters);
+            }
         }
 
         private static IEnumerable<Parameter> GetAutofacParameters(IParameter[] args)
@@ -63,17 +67,23 @@ namespace NukedBit.Mvvm.DI.AutoFac
 
         public object Resolve(Type viewType, params IParameter[] args)
         {
-            var parameters = GetAutofacParameters(args);
-            return _context.Resolve(viewType, parameters);
+            using (var scope = _context.BeginLifetimeScope())
+            {
+                var parameters = GetAutofacParameters(args);
+                return scope.Resolve(viewType, parameters);
+            }
         }
 
         public object ResolveNamed(string viewName, params IParameter[] args)
         {
-            var parameters = GetAutofacParameters(args);
-            return _context.ResolveNamed<ContentPage>(viewName, parameters);
+            using (var scope = _context.BeginLifetimeScope())
+            {
+                var parameters = GetAutofacParameters(args);
+                return scope.ResolveNamed<ContentPage>(viewName, parameters);
+            }
         }
 
-        public static IMvvmContainer Create(IComponentContext context)
+        public static IMvvmContainer Create(IContainer context)
         {
             return new MvvmContainerAutofac(context);
         }

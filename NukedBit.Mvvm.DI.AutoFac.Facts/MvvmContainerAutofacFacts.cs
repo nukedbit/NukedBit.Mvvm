@@ -22,7 +22,7 @@ namespace NukedBit.Mvvm.DI.AutoFac.Facts
                 .AsView();
 
             builder.Register(c =>
-                ViewModelNavigation.Create(MvvmContainerAutofac.Create(c.Resolve<IComponentContext>())));
+                ViewModelNavigation.Create(MvvmContainerAutofac.Create(c.Resolve<IComponentContext>() as IContainer)));
 
             var container = builder.Build();
 
@@ -46,7 +46,7 @@ namespace NukedBit.Mvvm.DI.AutoFac.Facts
                 .AsView();
 
             builder.Register(c =>
-                ViewModelNavigation.Create(MvvmContainerAutofac.Create(c.Resolve<IComponentContext>())));
+                ViewModelNavigation.Create(MvvmContainerAutofac.Create(c.Resolve<IComponentContext>() as IContainer)));
 
             var container = builder.Build();
 
