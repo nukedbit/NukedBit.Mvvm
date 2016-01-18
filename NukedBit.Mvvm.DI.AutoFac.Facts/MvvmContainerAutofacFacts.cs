@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Autofac;
+using Autofac.Core.Lifetime;
+using Autofac.Core.Registration;
 using Moq;
 using NukedBit.Mvvm.DI.AutoFac.Facts.ViewModels;
 using NukedBit.Mvvm.DI.AutoFac.Facts.Views;
@@ -22,7 +24,7 @@ namespace NukedBit.Mvvm.DI.AutoFac.Facts
                 .AsView();
 
             builder.Register(c =>
-                ViewModelNavigation.Create(MvvmContainerAutofac.Create(c.Resolve<IComponentContext>() as IContainer)));
+                ViewModelNavigation.Create(MvvmContainerAutofac.Create(c.Resolve<IComponentContext>() as LifetimeScope)));
 
             var container = builder.Build();
 
@@ -45,15 +47,14 @@ namespace NukedBit.Mvvm.DI.AutoFac.Facts
             builder.RegisterType<FakeWithArgsView>()
                 .AsView();
 
-            builder.Register(c =>
-                ViewModelNavigation.Create(MvvmContainerAutofac.Create(c.Resolve<IComponentContext>() as IContainer)));
+            builder.Register(c => ViewModelNavigation.Create(MvvmContainerAutofac.Create(c.Resolve<IComponentContext>() as LifetimeScope)));
 
             var container = builder.Build();
 
             var navigationMock = new Mock<INavigation>();
 
             await container.Resolve<IViewModelNavigator>()
-                .Navigate<FakeWithArgsViewModel>(navigationMock.Object, 
+                .Navigate<FakeWithArgsViewModel>(navigationMock.Object,
                 new NamedParameter("name", "pippo"));
 
             navigationMock.Verify(m => m.PushAsync(It.IsAny<FakeWithArgsView>()), Times.Once);

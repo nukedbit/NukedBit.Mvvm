@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using Autofac.Core;
+using Autofac.Core.Lifetime;
 using NukedBit.Mvvm.ViewModels;
 /***************************************************************************
 
@@ -28,8 +29,8 @@ namespace NukedBit.Mvvm.DI.AutoFac
 {
     public class MvvmContainerAutofac : IMvvmContainer
     {
-        private readonly IContainer _context;
-        internal MvvmContainerAutofac(IContainer context)
+        private readonly LifetimeScope _context;
+        internal MvvmContainerAutofac(LifetimeScope context)
         {
             _context = context;            
         }
@@ -83,7 +84,7 @@ namespace NukedBit.Mvvm.DI.AutoFac
             }
         }
 
-        public static IMvvmContainer Create(IContainer context)
+        public static IMvvmContainer Create(LifetimeScope context)
         {
             return new MvvmContainerAutofac(context);
         }
