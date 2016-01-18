@@ -34,7 +34,7 @@ namespace NukedBit.Mvvm
 
         #region IViewModelNavigator implementation
         public async Task Navigate<T>(INavigation navigator) where T : IViewModel
-        {
+        {            
             var viewModel = _container.Resolve<T>();
             var view = ResolveView(viewModel);
             await navigator.PushAsync(view);

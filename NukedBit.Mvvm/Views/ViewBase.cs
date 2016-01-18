@@ -22,9 +22,9 @@ using Xamarin.Forms;
 
 namespace NukedBit.Mvvm.Views
 {
-    public class ViewBase<T> : ContentPage, IView where T : IViewModel
+    public class ViewBase<T> : ContentPage, IDisposable, IView where T : IViewModel
     {
-        private readonly T _viewModel;
+        private T _viewModel;
 
         public T ViewModel => _viewModel;
 
@@ -43,6 +43,11 @@ namespace NukedBit.Mvvm.Views
             var modelBase = ViewModel as ViewModelBase;
             modelBase.Navigation = Navigation;
         }
+        
+        public virtual void Dispose()
+        {
+            _viewModel = default(T);
+        } 
     }
 }
 
