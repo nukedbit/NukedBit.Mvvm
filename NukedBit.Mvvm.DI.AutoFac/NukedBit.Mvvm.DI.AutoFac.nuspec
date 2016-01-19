@@ -17,7 +17,7 @@
 		<dependencies>
 			<group targetFramework ="portable45-net45+win8+wp8">
 				<dependency id="Xamarin.Forms" version="2.0.0.6490" />
-				<dependency id="NukedBit.Mvvm" version="$version$" />
+				<dependency id="NukedBit.Mvvm" version="$version$-pre" />
 			</group>
 		</dependencies>
 	</metadata>
