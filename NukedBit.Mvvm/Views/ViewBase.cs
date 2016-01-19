@@ -43,10 +43,24 @@ namespace NukedBit.Mvvm.Views
             var modelBase = ViewModel as ViewModelBase;
             modelBase.Navigation = Navigation;
         }
-        
+
+       
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            BindingContext = null;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = ViewModel;
+        }
+
+
         public virtual void Dispose()
         {
-     
+            _viewModel = default(T);
         } 
     }
 }
