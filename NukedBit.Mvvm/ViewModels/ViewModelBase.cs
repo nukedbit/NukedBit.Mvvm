@@ -27,7 +27,7 @@ namespace NukedBit.Mvvm.ViewModels {
 		#region IDisposable implementation
 
 		public virtual void Dispose () {
-            PropertyChanged = null;
+
         }
 
 		#endregion

@@ -32,7 +32,7 @@ namespace NukedBit.Mvvm.DI.AutoFac
         private readonly LifetimeScope _context;
         internal MvvmContainerAutofac(LifetimeScope context)
         {
-            _context = context;            
+            _context = context;
         }
 
         public T Resolve<T>() where T : IViewModel
@@ -43,11 +43,9 @@ namespace NukedBit.Mvvm.DI.AutoFac
 
         public T Resolve<T>(params IParameter[] args) where T : IViewModel
         {
-            using (var scope = _context.BeginLifetimeScope())
-            {
-                var parameters = GetAutofacParameters(args);
-                return scope.Resolve<T>(parameters);
-            }
+            var scope = _context.BeginLifetimeScope();
+            var parameters = GetAutofacParameters(args);
+            return scope.Resolve<T>(parameters);
         }
 
         private static IEnumerable<Parameter> GetAutofacParameters(IParameter[] args)
@@ -58,9 +56,9 @@ namespace NukedBit.Mvvm.DI.AutoFac
                 if (namedParameter != null)
                 {
                     var np = namedParameter;
-                    return (Parameter) new Autofac.NamedParameter(np.Name, np.Value);
+                    return (Parameter)new Autofac.NamedParameter(np.Name, np.Value);
                 }
-                var tp = (TypedParameter) p;
+                var tp = (TypedParameter)p;
                 return new Autofac.TypedParameter(tp.Type, tp.Value);
             });
             return parameters;
@@ -68,20 +66,16 @@ namespace NukedBit.Mvvm.DI.AutoFac
 
         public object Resolve(Type viewType, params IParameter[] args)
         {
-            using (var scope = _context.BeginLifetimeScope())
-            {
-                var parameters = GetAutofacParameters(args);
-                return scope.Resolve(viewType, parameters);
-            }
+            var scope = _context.BeginLifetimeScope();
+            var parameters = GetAutofacParameters(args);
+            return scope.Resolve(viewType, parameters);
         }
 
         public object ResolveNamed(string viewName, params IParameter[] args)
         {
-            using (var scope = _context.BeginLifetimeScope())
-            {
-                var parameters = GetAutofacParameters(args);
-                return scope.ResolveNamed<ContentPage>(viewName, parameters);
-            }
+            var scope = _context.BeginLifetimeScope();
+            var parameters = GetAutofacParameters(args);
+            return scope.ResolveNamed<ContentPage>(viewName, parameters);
         }
 
         public static IMvvmContainer Create(LifetimeScope context)
