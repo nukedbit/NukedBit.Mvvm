@@ -1,3 +1,12 @@
+# Build Status
+
+<img src="https://ci.appveyor.com/api/projects/status/github/nukedbit/nukedbit.mvvm?branch=master&svg=true&passingText=master%20-%20OK&failingText=master%20-%20-Fail" />
+
+
+<img src="https://ci.appveyor.com/api/projects/status/github/nukedbit/nukedbit.mvvm?branch=develop&svg=true&passingText=develop%20-%20OK&failingText=develop%20-%20-Fail" />
+
+svg=tru
+
 # NukedBit.Mvvm
 
 ### Why another mvvm framework?
