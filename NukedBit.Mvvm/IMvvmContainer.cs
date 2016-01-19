@@ -18,14 +18,16 @@
 
 using System;
 using NukedBit.Mvvm.ViewModels;
+using NukedBit.Mvvm.Views;
+using Xamarin.Forms;
 
 namespace NukedBit.Mvvm
 {
     public interface IMvvmContainer
     {
         T Resolve<T>() where T : IViewModel;
-        T Resolve<T>(params IParameter[] args) where T : IViewModel;
-        object Resolve(Type viewType, params IParameter[] args);
+        T Resolve<T>(params IParameter[] args) where T : IViewModel; 
         object ResolveNamed(string viewName, params IParameter[] args);
+        void ReleaseView(IView view);
     }
 }

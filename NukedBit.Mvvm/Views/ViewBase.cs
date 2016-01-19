@@ -46,7 +46,7 @@ namespace NukedBit.Mvvm.Views
         
         public virtual void Dispose()
         {
-
+     
         } 
     }
 }

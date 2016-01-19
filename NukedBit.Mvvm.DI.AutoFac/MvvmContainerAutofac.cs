@@ -5,6 +5,7 @@ using Autofac;
 using Autofac.Core;
 using Autofac.Core.Lifetime;
 using NukedBit.Mvvm.ViewModels;
+using NukedBit.Mvvm.Views;
 /***************************************************************************
 
    Copyright 2015  Sebastian Faltoni aka NukedBit
@@ -30,22 +31,41 @@ namespace NukedBit.Mvvm.DI.AutoFac
     public class MvvmContainerAutofac : IMvvmContainer
     {
         private readonly LifetimeScope _context;
+        private Dictionary<IView, ILifetimeScope> _viewsScopes = new Dictionary<IView, ILifetimeScope>();
+        private Dictionary<IViewModel, ILifetimeScope> _viewModelsScopes = new Dictionary<IViewModel, ILifetimeScope>();
+
         internal MvvmContainerAutofac(LifetimeScope context)
         {
             _context = context;
         }
 
+        public void ReleaseView(IView view)
+        {
+            using (_viewsScopes[view])
+            {
+                using (_viewModelsScopes[view.ViewModel])
+                {
+                    _viewModelsScopes.Remove(view.ViewModel);
+                    _viewsScopes.Remove(view);
+                }
+            }
+        }
+
         public T Resolve<T>() where T : IViewModel
         {
-            using (var scope = _context.BeginLifetimeScope())
-                return scope.Resolve<T>();
+            var scope = _context.BeginLifetimeScope();
+            var viewModel = scope.Resolve<T>(); ;
+            _viewModelsScopes.Add(viewModel, scope);
+            return viewModel;
         }
 
         public T Resolve<T>(params IParameter[] args) where T : IViewModel
         {
             var scope = _context.BeginLifetimeScope();
             var parameters = GetAutofacParameters(args);
-            return scope.Resolve<T>(parameters);
+            var viewModel = scope.Resolve<T>(parameters); ;
+            _viewModelsScopes.Add(viewModel, scope);
+            return viewModel;
         }
 
         private static IEnumerable<Parameter> GetAutofacParameters(IParameter[] args)
@@ -64,18 +84,14 @@ namespace NukedBit.Mvvm.DI.AutoFac
             return parameters;
         }
 
-        public object Resolve(Type viewType, params IParameter[] args)
-        {
-            var scope = _context.BeginLifetimeScope();
-            var parameters = GetAutofacParameters(args);
-            return scope.Resolve(viewType, parameters);
-        }
 
         public object ResolveNamed(string viewName, params IParameter[] args)
         {
             var scope = _context.BeginLifetimeScope();
             var parameters = GetAutofacParameters(args);
-            return scope.ResolveNamed<ContentPage>(viewName, parameters);
+            var view = scope.ResolveNamed<ContentPage>(viewName, parameters);
+            _viewsScopes.Add((IView)view, scope);
+            return view;
         }
 
         public static IMvvmContainer Create(LifetimeScope context)

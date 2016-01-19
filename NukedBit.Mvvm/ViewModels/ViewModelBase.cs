@@ -27,8 +27,14 @@ namespace NukedBit.Mvvm.ViewModels {
 		#region IDisposable implementation
 
 		public virtual void Dispose () {
+            if (PropertyChanged == null)
+                return;
 
-        }
+            var invocation = PropertyChanged.GetInvocationList();
+            foreach (var p in invocation)
+                PropertyChanged -= (PropertyChangedEventHandler)p;
+		    PropertyChanged = null;
+		}
 
 		#endregion
 
