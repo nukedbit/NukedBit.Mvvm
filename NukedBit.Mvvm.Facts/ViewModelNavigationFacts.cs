@@ -63,10 +63,10 @@ namespace NukedBit.Mvvm.Facts
             containerMock.Setup(m => m.ResolveNamed(viewName, It.IsAny<TypedParameter>()))
                 .Returns(view);
 
-            var fakeViewModel = new FakeViewModelWithArgs(expectedName);
+            var fakeViewModel = new Mock<FakeViewModelWithArgs>(expectedName);
 
-            containerMock.Setup(m => m.Resolve<FakeViewModelWithArgs>(It.IsAny<NamedParameter>()))
-                .Returns(fakeViewModel);
+            containerMock.Setup(m => m.Resolve<FakeViewModelWithArgs>())
+                .Returns(fakeViewModel.Object);
             var navigationMock = new Mock<INavigation>();
 
             var impl = new ViewModelNavigationImpl(containerMock.Object);
@@ -81,9 +81,9 @@ namespace NukedBit.Mvvm.Facts
 
             navigationMock.Verify(m => m.PushAsync(view), Times.Once);
             containerMock.Verify(m => m.ResolveNamed(viewName, It.Is<IParameter[]>(parameters =>
-                parameters.Count(p => ((TypedParameter)p).Value == fakeViewModel) == 1)), Times.Once);
+                parameters.Count(p => ((TypedParameter)p).Value == fakeViewModel.Object) == 1)), Times.Once);
 
-            containerMock.Verify(m=> m.Resolve<FakeViewModelWithArgs>(It.Is<IParameter[]>(parameters =>
+            fakeViewModel.Verify(m=> m.Initialize(It.Is<IParameter[]>(parameters =>
                 parameters.Count(p => ((NamedParameter)p).Value == expectedName) == 1)));
         }
     }

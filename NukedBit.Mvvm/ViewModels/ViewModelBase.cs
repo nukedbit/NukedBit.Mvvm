@@ -19,6 +19,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace NukedBit.Mvvm.ViewModels {
@@ -47,5 +48,16 @@ namespace NukedBit.Mvvm.ViewModels {
 		}
 
         public INavigation Navigation { get; internal set; }
+
+
+	    public virtual Task Initialize(params IParameter[] parameters)
+	    {
+	        return Task.FromResult(0);
+	    }
+
+	    protected void InvokeOnMainThread(Action action)
+	    {
+	        Device.BeginInvokeOnMainThread(action);
+	    }
     }
 }

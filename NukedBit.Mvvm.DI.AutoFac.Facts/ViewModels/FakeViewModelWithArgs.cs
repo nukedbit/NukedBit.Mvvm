@@ -4,11 +4,11 @@ namespace NukedBit.Mvvm.DI.AutoFac.Facts.ViewModels
 {
     public class FakeWithArgsViewModel : ViewModelBase
     {
-        public string Name { get; }
+       
 
-        public FakeWithArgsViewModel(string name)
+        public FakeWithArgsViewModel()
         {
-            Name = name;
+       
         }
     }
 }
