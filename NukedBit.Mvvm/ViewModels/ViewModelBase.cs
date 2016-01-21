@@ -54,5 +54,10 @@ namespace NukedBit.Mvvm.ViewModels {
 	    {
 	        return Task.FromResult(0);
 	    }
+
+	    protected void InvokeOnMainThread(Action action)
+	    {
+	        Device.BeginInvokeOnMainThread(action);
+	    }
     }
 }
