@@ -41,8 +41,9 @@ namespace NukedBit.Mvvm
         }
         public async Task Navigate<T>(INavigation navigator, params IParameter[] args) where T : IViewModel
         {
-            var viewModel = _container.Resolve<T>(args);
+            var viewModel = _container.Resolve<T>();
             var view = ResolveView(viewModel);
+            await viewModel.Initialize(args);
             await navigator.PushAsync(view);
         }
         #endregion

@@ -25,8 +25,7 @@ namespace NukedBit.Mvvm
 {
     public interface IMvvmContainer
     {
-        T Resolve<T>() where T : IViewModel;
-        T Resolve<T>(params IParameter[] args) where T : IViewModel; 
+        T Resolve<T>() where T : IViewModel; 
         object ResolveNamed(string viewName, params IParameter[] args);
         void ReleaseView(IView view);
     }

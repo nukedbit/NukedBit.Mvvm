@@ -31,8 +31,8 @@ namespace NukedBit.Mvvm.DI.AutoFac
     public class MvvmContainerAutofac : IMvvmContainer
     {
         private readonly LifetimeScope _context;
-        private Dictionary<IView, ILifetimeScope> _viewsScopes = new Dictionary<IView, ILifetimeScope>();
-        private Dictionary<IViewModel, ILifetimeScope> _viewModelsScopes = new Dictionary<IViewModel, ILifetimeScope>();
+        private readonly Dictionary<IView, ILifetimeScope> _viewsScopes = new Dictionary<IView, ILifetimeScope>();
+        private readonly Dictionary<IViewModel, ILifetimeScope> _viewModelsScopes = new Dictionary<IViewModel, ILifetimeScope>();
 
         internal MvvmContainerAutofac(LifetimeScope context)
         {
@@ -58,15 +58,7 @@ namespace NukedBit.Mvvm.DI.AutoFac
             _viewModelsScopes.Add(viewModel, scope);
             return viewModel;
         }
-
-        public T Resolve<T>(params IParameter[] args) where T : IViewModel
-        {
-            var scope = _context.BeginLifetimeScope();
-            var parameters = GetAutofacParameters(args);
-            var viewModel = scope.Resolve<T>(parameters); ;
-            _viewModelsScopes.Add(viewModel, scope);
-            return viewModel;
-        }
+         
 
         private static IEnumerable<Parameter> GetAutofacParameters(IParameter[] args)
         {

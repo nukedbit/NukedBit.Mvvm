@@ -16,8 +16,12 @@
 
 *****************************************************************************/
 
+using System.Threading.Tasks;
+
 namespace NukedBit.Mvvm.ViewModels {
-	public interface IViewModel {
+	public interface IViewModel
+	{
+	    Task Initialize(params IParameter[] parameters);
 	}
 }
 
