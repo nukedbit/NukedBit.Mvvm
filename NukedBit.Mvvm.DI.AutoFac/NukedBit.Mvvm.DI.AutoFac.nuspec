@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>NukedBit.Mvvm.DI.AutoFac</id>
-		<version>$version$-pre</version>
+		<version>$version$</version>
 		<title>NukedBit Mvvm AutoFac</title>
 		<authors>nukedbit</authors>
 		<owners>nukedbit</owners>
@@ -17,7 +17,7 @@
 		<dependencies>
 			<group targetFramework ="portable45-net45+win8+wp8">
 				<dependency id="Xamarin.Forms" version="2.0.0.6490" />
-				<dependency id="NukedBit.Mvvm" version="$version$-pre" />
+				<dependency id="NukedBit.Mvvm" version="$version$" />
 			</group>
 		</dependencies>
 	</metadata>
